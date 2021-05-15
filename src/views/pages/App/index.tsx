@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import LoaderContent from './LoaderContent';
-import { cocktailApi, dogApi } from './services/api';
+import LoaderContent from '../../../LoaderContent';
+import { cocktailApi, dogApi } from '../../../services/api';
+
+import { Container } from './style';
 
 interface Cocktail {
   strDrinkThumb: string;
@@ -14,7 +16,7 @@ const App: React.FC = () => {
   const [cocktail, setCocktail] = useState<Cocktail>({
     strDrinkThumb: '',
     strDrink: '',
-    strInstructions: ''
+    strInstructions: '',
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -34,27 +36,33 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <div>
+    <Container>
+      <div className="header">
         <h1>Hello Gama Academy</h1>
         <button onClick={handleSortingImage}>Sextou!</button>
       </div>
 
-      {isLoading ? (
-        <LoaderContent />
-      ) : (
-        <div>
-          <h2>Como:</h2>
-          <img src={cocktail.strDrinkThumb} alt="cocktail" width="200" />
-          <h3>{cocktail.strDrink}</h3>
-          <strong>Modo de preparo:</strong>
-          <p>{cocktail.strInstructions}</p>
+      <div className="content">
+        {isLoading ? (
+          <LoaderContent />
+        ) : (
+          <>
+            <section>
+              <h2>Como:</h2>
+              <img src={cocktail.strDrinkThumb} alt="cocktail" width="200" />
+              <h3>{cocktail.strDrink}</h3>
+              <strong>Modo de preparo:</strong>
+              <p>{cocktail.strInstructions}</p>
+            </section>
 
-          <h2>Com quem:</h2>
-          <img src={dogPhoto} alt="dog" width="200" />
-        </div>
-      )}
-    </div>
+            <section>
+              <h2>Com quem:</h2>
+              <img src={dogPhoto} alt="dog" width="200" />
+            </section>
+          </>
+        )}
+      </div>
+    </Container>
   );
 };
 
