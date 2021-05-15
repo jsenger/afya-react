@@ -4,7 +4,7 @@ const LoaderContent: React.FC = () => {
   return (
     <div>
       <p>Carregando...</p>
-      <img src={loadingGif} alt="dog loader" width="200" />
+      <img src={loadingGif} alt="dog loader" width="400" />
     </div>
   );
 };
